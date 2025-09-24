@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PhotosServiceService {
+export class PhotosService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 

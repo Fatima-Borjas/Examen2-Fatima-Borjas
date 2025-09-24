@@ -1,20 +1,85 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Inicio
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Logo UNITEC -->
+  <div class="logo-container">
+    <img src="assets/unitec-logo.png" alt="UNITEC" class="unitec-logo" />
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- Navegación a otras páginas -->
+  <ion-list>
+    <ion-item button (click)="navigateTo('character-firestore-page')">
+      <ion-icon name="people" slot="start"></ion-icon>
+      <ion-label>Characters (Firebase)</ion-label>
+    </ion-item>
+    
+    <ion-item button (click)="navigateTo('comment-page')">
+      <ion-icon name="images" slot="start"></ion-icon>
+      <ion-label>Photos API</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Sección de crear post -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Posts</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-button expand="block" color="primary" (click)="createPost()">
+        CREAR POST
+      </ion-button>
+
+      <!-- Campo de texto -->
+      <ion-item lines="none" class="input-item">
+        <ion-textarea 
+          [(ngModel)]="userThought" 
+          placeholder="¿Qué estas pensando hoy?"
+          rows="3"
+          class="thought-input">
+        </ion-textarea>
+      </ion-item>
+
+      <!-- Botones de acción -->
+      <div class="action-buttons">
+        <ion-button fill="clear" (click)="captureImage()">
+          <ion-icon name="camera" slot="icon-only"></ion-icon>
+        </ion-button>
+        
+        <ion-button fill="clear" (click)="selectLocation()">
+          <ion-icon name="location" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- Imagen capturada -->
+      <div class="image-container" *ngIf="showImage && capturedImage">
+        <img [src]="capturedImage" alt="Imagen capturada" class="captured-image">
+        <ion-button fill="clear" color="danger" (click)="removeImage()" class="remove-btn">
+          <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- Botón de enviar -->
+      <ion-button expand="block" color="success" (click)="submitThought()" 
+                  [disabled]="!userThought.trim() || !capturedImage">
+        Publicar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Posts simulados -->
+  <div class="posts-section">
+    <ion-card *ngFor="let post of mockPosts">
+      <ion-card-content>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

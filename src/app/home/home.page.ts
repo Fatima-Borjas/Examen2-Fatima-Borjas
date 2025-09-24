@@ -17,6 +17,9 @@ export class HomePage {
   capturedImage: string | null = null;
   userThought: string = '';
   showImage: boolean = false;
+mockPosts: any;
+selectLocation: any;
+createPost: any;
 
   constructor() {}
 

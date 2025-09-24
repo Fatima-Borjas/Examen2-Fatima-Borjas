@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.examen.app',
-  appName: 'Mi app',
+  appId: 'com.Fatima.examenapp',
+  appName: 'FatimaExamen2',
   webDir: 'www',
   server: {
     androidScheme: 'https'

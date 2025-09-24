@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { PhotosServiceService } from '../../services/photos-service';
+import { PhotosService } from '../../services/photos-service';
 import { Photo } from '../../models/photo.interface';
 
 @Component({
@@ -13,7 +13,7 @@ import { Photo } from '../../models/photo.interface';
   imports: [IonicModule, CommonModule, HttpClientModule]
 })
 export class CommentPagePage implements OnInit {
-  private photosService = inject(PhotosServiceService);
+  private photosService = inject(PhotosService);
   
   photos: Photo[] = [];
   loading: boolean = true;
@@ -25,6 +25,7 @@ export class CommentPagePage implements OnInit {
 
   loadPhotos() {
     this.loading = true;
+    this.error = '';
     this.photosService.getLimitedPhotos(20).subscribe({
       next: (data) => {
         this.photos = data;
