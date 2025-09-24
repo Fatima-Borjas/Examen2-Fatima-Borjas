@@ -10,4 +10,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'character-firestore-page',
+    loadComponent: () => import('./pages/character-firestore-page/character-firestore-page.page').then( m => m.CharacterFirestorePage)
+  },
 ];

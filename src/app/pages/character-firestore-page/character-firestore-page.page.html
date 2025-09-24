@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Characters</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let char of characters">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="char.image" alt="{{char.name}}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ char.name }}</h2>
+          <p>{{ char.species }}</p>
+          <p>{{ char.status }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>
