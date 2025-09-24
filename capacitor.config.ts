@@ -1,9 +1,18 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'miApp',
-  webDir: 'www'
+  appId: 'com.examen.app',
+  appName: 'Mi app',
+  webDir: 'www',
+  server: {
+    androidScheme: 'https'
+  },
+  plugins: {
+    Camera: {
+      allowEditing: false,
+      quality: 90
+    }
+  }
 };
 
 export default config;
