@@ -1,7 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { PhotosService } from '../../services/photos-service';
 import { Photo } from '../../models/photo.interface';
 
@@ -10,14 +9,15 @@ import { Photo } from '../../models/photo.interface';
   templateUrl: './comment-page.page.html',
   styleUrls: ['./comment-page.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, HttpClientModule]
+  imports: [IonicModule, CommonModule]
 })
 export class CommentPagePage implements OnInit {
-  private photosService = inject(PhotosService);
   
   photos: Photo[] = [];
   loading: boolean = true;
   error: string = '';
+
+  constructor(private photosService: PhotosService) {}
 
   ngOnInit() {
     this.loadPhotos();

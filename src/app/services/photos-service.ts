@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Photo } from '../models/photo.interface';
@@ -8,8 +8,9 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class PhotosService {
-  private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) {}
 
   getPhotos(): Observable<Photo[]> {
     return this.http.get<Photo[]>(`${this.apiUrl}/photos`);
