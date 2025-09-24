@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Comentarios - Photos API</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refreshData()">
+        <ion-icon name="refresh" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando fotos...</p>
+  </div>
+
+  <div *ngIf="error" class="error-container">
+    <ion-card color="danger">
+      <ion-card-content>
+        {{ error }}
+      </ion-card-content>
+    </ion-card>
+    <ion-button expand="block" (click)="refreshData()">Reintentar</ion-button>
+  </div>
+
+  <div *ngIf="!loading && photos.length > 0">
+    <ion-list>
+      <ion-item *ngFor="let photo of photos">
+        <ion-thumbnail slot="start">
+          <img [src]="photo.thumbnailUrl" [alt]="photo.title">
+        </ion-thumbnail>
+        
+        <ion-label>
+          <h3>{{ getDisplayText(photo) }}</h3>
+          <p>Album ID: {{ photo.albumId }}</p>
+          <p class="truncate">{{ photo.title }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Información de la API</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Total de fotos cargadas: {{ photos.length }}</p>
+        <p>URL de la API: jsonplaceholder.typicode.com/photos</p>
+        <p>Datos serializados correctamente con Interface</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!loading && photos.length === 0" class="empty-container">
+    <ion-card>
+      <ion-card-content>
+        <p>No se encontraron fotos.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

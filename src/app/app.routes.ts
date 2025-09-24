@@ -14,4 +14,8 @@ export const routes: Routes = [
     path: 'character-firestore-page',
     loadComponent: () => import('./pages/character-firestore-page/character-firestore-page.page').then( m => m.CharacterFirestorePage)
   },
+  {
+    path: 'comment-page',
+    loadComponent: () => import('./pages/comment-page/comment-page.page').then( m => m.CommentPagePage)
+  },
 ];
